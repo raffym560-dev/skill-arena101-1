@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: skill-arena
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn skill_arena:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SKILL_ARENA_SECRET
+        generateValue: true
+      - key: SKILL_ARENA_DB
+        value: skill_arena.db
